@@ -1,14 +1,15 @@
-
+import { forwardRef } from 'react';
 import styles from './Input.module.scss';
 
-const Input = ({ label, inputAttr }) => {
+const InputComponent = ({ label, inputAttr }, ref) => {
     return (
         <div className={styles.input}>
             <label>{label}</label>
-            {/* ... inputAttr 하면 inputAttr 객체 안에 있던 모든 props값이 들어옴*/}
-            <input {...inputAttr} />
+            <input ref={ref} {...inputAttr} />
         </div>
     );
 };
+
+const Input = forwardRef(InputComponent);
 
 export default Input;

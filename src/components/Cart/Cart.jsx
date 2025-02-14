@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './Cart.module.scss';
 import CartModal from './CartModal';
+import CartContext from '../../context/cart-context';
 
 const DUMMY_CART = [
     {
@@ -16,7 +17,8 @@ const DUMMY_CART = [
         price: 12000,
     },
 ];
-const Cart = ({ onClose }) => {
+
+const Cart = () => {
     const {
         'cart-items': cartItemStyle,
         total,
@@ -25,8 +27,10 @@ const Cart = ({ onClose }) => {
         button,
     } = styles;
 
+    const { closeModal } = useContext(CartContext);
+
     return (
-        <CartModal onClose={onClose}>
+        <CartModal onClose={closeModal}>
             {/* 주문 내역 */}
             <ul className={cartItemStyle}>
                 {DUMMY_CART.map((cartItem) => (
@@ -38,7 +42,12 @@ const Cart = ({ onClose }) => {
                 <span>58,000원</span>
             </div>
             <div className={actions}>
-                <button className={btnAlt} onClick={onClose}>닫기</button>
+                <button
+                    className={btnAlt}
+                    onClick={closeModal}
+                >
+                    닫기
+                </button>
                 <button className={button}>주문</button>
             </div>
         </CartModal>
