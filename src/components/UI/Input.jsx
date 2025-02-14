@@ -1,12 +1,12 @@
 
-import React from 'react';
 import styles from './Input.module.scss';
 
-const Input = ({ label }) => {
+const Input = ({ label, inputAttr }) => {
     return (
         <div className={styles.input}>
             <label>{label}</label>
-            <input />
+            {/* ... inputAttr 하면 inputAttr 객체 안에 있던 모든 props값이 들어옴*/}
+            <input {...inputAttr} />
         </div>
     );
 };
